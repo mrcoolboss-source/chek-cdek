@@ -21,32 +21,6 @@
             max-width: 950px;
             margin: 0 auto;
         }
-        /* визитка */
-        .viz-card {
-            background: white;
-            border-radius: 24px;
-            padding: 1rem 1.8rem;
-            margin-bottom: 1.8rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-left: 5px solid #119C41;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .viz-name {
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-        .viz-name span {
-            color: #119C41;
-        }
-        .viz-contacts a {
-            color: #1A2C2C;
-            text-decoration: none;
-            margin-left: 1rem;
-            font-size: 0.85rem;
-        }
         h1 {
             font-size: 1.8rem;
             margin-bottom: 0.2rem;
@@ -118,7 +92,7 @@
             gap: 1.5rem;
             margin-top: 0.5rem;
         }
-        .btn-download {
+        .btn-generate {
             background: #119C41;
             color: white;
             border: none;
@@ -131,7 +105,7 @@
             transition: 0.2s;
             width: 100%;
         }
-        .btn-download:hover {
+        .btn-generate:hover {
             background: #0E7A35;
             transform: scale(1.01);
         }
@@ -139,34 +113,30 @@
             margin: 1.5rem 0;
             border-color: #e2e8e6;
         }
-        .preview-area {
+        .result-area {
             background: #f4f7f6;
             padding: 1rem;
             border-radius: 16px;
             font-family: monospace;
-            font-size: 12px;
+            font-size: 13px;
             white-space: pre-wrap;
             margin-top: 1rem;
-            max-height: 300px;
-            overflow: auto;
+            border: 1px solid #cde3da;
+        }
+        .copy-hint {
+            font-size: 0.8rem;
+            color: #5A6E6E;
+            margin-top: 0.5rem;
+            text-align: right;
         }
         @media (max-width: 650px) {
             .question-block { padding: 1rem; }
             .options { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
-            .viz-card { flex-direction: column; text-align: center; gap: 8px; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="viz-card">
-        <div class="viz-name">📌 <span>Полтэф Герман</span> · Коммерческий представитель СДЭК</div>
-        <div class="viz-contacts">
-            <a href="tel:+79311056677">📞 +7(931)105-66-77</a>
-            <a href="mailto:g.poltef@cdek.ru">✉️ g.poltef@cdek.ru</a>
-        </div>
-    </div>
-
     <h1>📋 Чек-лист опроса клиента</h1>
     <div class="sub">Для менеджера: задайте вопросы по порядку, фиксируйте ответы</div>
 
@@ -329,16 +299,19 @@
             </div>
         </div>
 
-        <button type="button" class="btn-download" id="downloadBtn">📎 Скачать текстовый отчёт (.txt)</button>
+        <button type="button" class="btn-generate" id="generateBtn">📋 Сформировать отчёт</button>
         <hr>
-        <div style="font-size:0.85rem; text-align:center;">Отчёт включает все ответы и заметки. Сохраните файл или передайте руководителю.</div>
-        <div class="preview-area" id="previewArea">После заполнения нажмите кнопку — здесь появится предпросмотр отчёта.</div>
+        <div style="font-size:0.85rem; text-align:center;">После заполнения нажмите кнопку — ниже появится готовый текст для копирования.</div>
+        <div id="resultArea" class="result-area">
+            <!-- Здесь будет сформированный отчёт -->
+        </div>
+        <div class="copy-hint">💡 Выделите текст выше, скопируйте (Ctrl+C / Cmd+C) и вставьте куда нужно.</div>
     </form>
 </div>
 
 <script>
-    const downloadBtn = document.getElementById('downloadBtn');
-    const previewArea = document.getElementById('previewArea');
+    const generateBtn = document.getElementById('generateBtn');
+    const resultArea = document.getElementById('resultArea');
 
     function generateTextReport() {
         const companyName = document.getElementById('company_name').value.trim() || '—';
@@ -435,21 +408,10 @@
         return report;
     }
 
-    function downloadTextReport() {
-        const reportText = generateTextReport();
-        const blob = new Blob([reportText], {type: 'text/plain;charset=utf-8'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `cdek_checklist_${Date.now()}.txt`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        previewArea.innerText = reportText;
-    }
-
-    downloadBtn.addEventListener('click', downloadTextReport);
+    generateBtn.addEventListener('click', () => {
+        const report = generateTextReport();
+        resultArea.innerText = report;
+    });
 </script>
 </body>
 </html>
