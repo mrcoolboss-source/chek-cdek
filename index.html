@@ -217,13 +217,17 @@
             </div>
         </div>
 
-        <!-- 5. География -->
+        <!-- 5. География отправлений (откуда и куда) -->
         <div class="question-block">
             <div class="question-title">5. География отправлений</div>
-            <div class="question-text">🗣️ «По каким направлениям / городам чаще всего отправляете?»<br>
+            <div class="question-text">🗣️ «Откуда чаще всего отправляете?» (город/регион)</div>
+            <div class="comment-field">
+                <input type="text" placeholder="Город отправления (откуда)" style="width:100%; margin-bottom:8px;" id="geo_from">
+            </div>
+            <div class="question-text" style="margin-top: 6px;">🗣️ «По каким направлениям / городам чаще всего отправляете?»<br>
             (Если много: «Назовите топ-3 города или региона»)</div>
             <div class="comment-field">
-                <textarea rows="2" placeholder="Топ-3 города / региона" id="geo_top"></textarea>
+                <textarea rows="2" placeholder="Топ-3 города / региона (куда)" id="geo_to"></textarea>
             </div>
         </div>
 
@@ -242,20 +246,22 @@
             </div>
         </div>
 
-        <!-- 7. Текущий перевозчик -->
+        <!-- 7. Текущий перевозчик (добавлен вариант "никем") -->
         <div class="question-block">
             <div class="question-title">7. Текущий перевозчик (конкурент)</div>
             <div class="question-text">🗣️ «С кем сейчас работаете по доставке?»<br>
             (Если «своими курьерами» – фиксируем.<br>
             Если называет компанию – уточняем название.<br>
-            Если «разные» – «А кто основной, через кого больше всего отправляете?»)</div>
+            Если «разные» – «А кто основной, через кого больше всего отправляете?»<br>
+            Если не пользуетесь услугами перевозчиков – выберите «никем».)</div>
             <div class="options">
                 <label><input type="radio" name="current_carrier" value="свои курьеры"> Свои курьеры</label>
                 <label><input type="radio" name="current_carrier" value="другая ТК"> Другая ТК</label>
                 <label><input type="radio" name="current_carrier" value="разные"> Разные</label>
+                <label><input type="radio" name="current_carrier" value="никем"> Никем (не пользуемся)</label>
             </div>
             <div class="comment-field">
-                <input type="text" placeholder="Название ТК / основной перевозчик" style="width:100%" id="carrier_name">
+                <input type="text" placeholder="Название ТК / основной перевозчик (если есть)" style="width:100%" id="carrier_name">
             </div>
         </div>
 
@@ -333,7 +339,9 @@
         const monthlyQty = document.querySelector('input[name="monthly_qty"]:checked')?.value || '—';
         const monthlyCustom = document.getElementById('monthly_qty_custom').value.trim() || '—';
 
-        const geoTop = document.getElementById('geo_top').value.trim() || '—';
+        // Новые поля: откуда и куда
+        const geoFrom = document.getElementById('geo_from').value.trim() || '—';
+        const geoTo = document.getElementById('geo_to').value.trim() || '—';
 
         const international = document.querySelector('input[name="international"]:checked')?.value || '—';
         const internationalCountries = document.getElementById('international_countries').value.trim() || '—';
@@ -379,8 +387,9 @@
         if (monthlyCustom !== '—') report += `Уточнение клиента: ${monthlyCustom}\n`;
         report += '\n';
         
-        report += '5. ГЕОГРАФИЯ (ТОП-3 ГОРОДА / РЕГИОНА)\n';
-        report += `${geoTop}\n\n`;
+        report += '5. ГЕОГРАФИЯ ОТПРАВЛЕНИЙ\n';
+        report += `Откуда отправляем: ${geoFrom}\n`;
+        report += `Куда отправляем (топ-3): ${geoTo}\n\n`;
         
         report += '6. МЕЖДУНАРОДНЫЕ ОТПРАВЛЕНИЯ\n';
         report += `Наличие: ${international}\n`;
