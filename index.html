@@ -164,7 +164,7 @@
             </div>
         </div>
 
-        <!-- 2. Кто принимает решение -->
+        <!-- 2. Лицо, принимающее решение -->
         <div class="question-block">
             <div class="question-title">2. Лицо, принимающее решение</div>
             <div class="question-text">🗣️ «Кто в компании отвечает за выбор поставщика?»</div>
@@ -177,9 +177,44 @@
             </div>
         </div>
 
-        <!-- 3. Характер и упаковка -->
+        <!-- 3. Опыт работы со СДЭК -->
         <div class="question-block">
-            <div class="question-title">3. Характер отправлений и упаковка</div>
+            <div class="question-title">3. Опыт работы со СДЭК</div>
+            <div class="question-text">🗣️ «А опыт работы со СДЭК был? Может, как физлицо отправляли?»<br>
+            (Если да – фиксируем: по договору / физлицо / разово; примерный период; почему сейчас не работаем)</div>
+            <div class="options">
+                <label><input type="radio" name="cdek_exp" value="нет"> Нет</label>
+                <label><input type="radio" name="cdek_exp" value="физлицо"> Да, как физлицо</label>
+                <label><input type="radio" name="cdek_exp" value="договор"> Да, по договору</label>
+                <label><input type="radio" name="cdek_exp" value="разово"> Разово</label>
+            </div>
+            <div class="comment-field">
+                <input type="text" placeholder="Примерный период, причины (если клиент говорит сам)" style="width:100%" id="cdek_exp_detail">
+            </div>
+        </div>
+
+        <!-- 4. Текущий перевозчик (конкурент) -->
+        <div class="question-block">
+            <div class="question-title">4. Текущий перевозчик (конкурент)</div>
+            <div class="question-text">🗣️ «С кем сейчас работаете по доставке?»<br>
+            (Если «своими курьерами» – фиксируем.<br>
+            Если называет компанию – уточняем название.<br>
+            Если «разные» – «А кто основной, через кого больше всего отправляете?»<br>
+            Если не пользуетесь услугами перевозчиков – выберите «никем».)</div>
+            <div class="options">
+                <label><input type="radio" name="current_carrier" value="свои курьеры"> Свои курьеры</label>
+                <label><input type="radio" name="current_carrier" value="другая ТК"> Другая ТК</label>
+                <label><input type="radio" name="current_carrier" value="разные"> Разные</label>
+                <label><input type="radio" name="current_carrier" value="никем"> Никем (не пользуемся)</label>
+            </div>
+            <div class="comment-field">
+                <input type="text" placeholder="Название ТК / основной перевозчик (если есть)" style="width:100%" id="carrier_name">
+            </div>
+        </div>
+
+        <!-- 5. Характер отправлений и упаковка -->
+        <div class="question-block">
+            <div class="question-title">5. Характер отправлений и упаковка</div>
             <div class="question-text">🗣️ «Какой характер отправлений: документы или грузы / товары?»<br>
             🗣️ «В чём обычно отправляете – в коробках, мешках, паллетах?»</div>
             <div class="options">
@@ -199,9 +234,9 @@
             </div>
         </div>
 
-        <!-- 4. Количество отправлений -->
+        <!-- 6. Количество отправлений в месяц -->
         <div class="question-block">
-            <div class="question-title">4. Количество отправлений в месяц</div>
+            <div class="question-title">6. Количество отправлений в месяц</div>
             <div class="question-text">🗣️ «Сколько отправлений в месяц делаете?»<br>
             (При затруднении: «А за последний месяц примерно сколько?»)</div>
             <div class="options">
@@ -217,9 +252,9 @@
             </div>
         </div>
 
-        <!-- 5. География отправлений (откуда и куда) -->
+        <!-- 7. География отправлений (откуда и куда) -->
         <div class="question-block">
-            <div class="question-title">5. География отправлений</div>
+            <div class="question-title">7. География отправлений</div>
             <div class="question-text">🗣️ «Откуда чаще всего отправляете?» (город/регион)</div>
             <div class="comment-field">
                 <input type="text" placeholder="Город отправления (откуда)" style="width:100%; margin-bottom:8px;" id="geo_from">
@@ -231,9 +266,9 @@
             </div>
         </div>
 
-        <!-- 6. Международные -->
+        <!-- 8. Международные отправления -->
         <div class="question-block">
-            <div class="question-title">6. Международные отправления</div>
+            <div class="question-title">8. Международные отправления</div>
             <div class="question-text">🗣️ «Вы отправляете за пределы РФ? Есть ли международные перевозки?»<br>
             (Если да: «В какие страны?»)</div>
             <div class="options">
@@ -246,45 +281,23 @@
             </div>
         </div>
 
-        <!-- 7. Текущий перевозчик (добавлен вариант "никем") -->
+        <!-- 9. Маркетплейсы (новый вопрос) -->
         <div class="question-block">
-            <div class="question-title">7. Текущий перевозчик (конкурент)</div>
-            <div class="question-text">🗣️ «С кем сейчас работаете по доставке?»<br>
-            (Если «своими курьерами» – фиксируем.<br>
-            Если называет компанию – уточняем название.<br>
-            Если «разные» – «А кто основной, через кого больше всего отправляете?»<br>
-            Если не пользуетесь услугами перевозчиков – выберите «никем».)</div>
+            <div class="question-title">9. Маркетплейсы</div>
+            <div class="question-text">🗣️ «Работаете ли вы с маркетплейсами? Если да, то с какими?»</div>
             <div class="options">
-                <label><input type="radio" name="current_carrier" value="свои курьеры"> Свои курьеры</label>
-                <label><input type="radio" name="current_carrier" value="другая ТК"> Другая ТК</label>
-                <label><input type="radio" name="current_carrier" value="разные"> Разные</label>
-                <label><input type="radio" name="current_carrier" value="никем"> Никем (не пользуемся)</label>
+                <label><input type="radio" name="marketplace" value="да"> Да</label>
+                <label><input type="radio" name="marketplace" value="нет"> Нет</label>
             </div>
             <div class="comment-field">
-                <input type="text" placeholder="Название ТК / основной перевозчик (если есть)" style="width:100%" id="carrier_name">
+                <input type="text" placeholder="Если да — укажите, с какими (Ozon, Wildberries, Яндекс.Маркет, AliExpress и т.п.)" style="width:100%" id="marketplace_names">
             </div>
         </div>
 
-        <!-- 8. Опыт со СДЭК -->
-        <div class="question-block">
-            <div class="question-title">8. Опыт работы со СДЭК</div>
-            <div class="question-text">🗣️ «А опыт работы со СДЭК был? Может, как физлицо отправляли?»<br>
-            (Если да – фиксируем: по договору / физлицо / разово; примерный период; почему сейчас не работаем)</div>
-            <div class="options">
-                <label><input type="radio" name="cdek_exp" value="нет"> Нет</label>
-                <label><input type="radio" name="cdek_exp" value="физлицо"> Да, как физлицо</label>
-                <label><input type="radio" name="cdek_exp" value="договор"> Да, по договору</label>
-                <label><input type="radio" name="cdek_exp" value="разово"> Разово</label>
-            </div>
-            <div class="comment-field">
-                <input type="text" placeholder="Примерный период, причины (если клиент говорит сам)" style="width:100%" id="cdek_exp_detail">
-            </div>
-        </div>
-
-        <!-- 9. Потенциал (заполняет менеджер) -->
+        <!-- 10. Потенциал и общие заметки (перестроен) -->
         <div class="question-block" style="border-left: 4px solid #FF9800;">
-            <div class="question-title">9. Потенциал (заполняет менеджер)</div>
-            <div class="question-text">📌 Оцените на основе п. 3–5: ожидаемый объём, приоритетность (текущий перевозчик, сезонность, срочность)</div>
+            <div class="question-title">10. Потенциал и общие заметки</div>
+            <div class="question-text">📌 Оцените потенциал на основе п. 5–7 (характер, количество, география). Ниже оставьте общие заметки по клиенту.</div>
             <div class="row-flex">
                 <select id="potential_volume">
                     <option>Ожидаемый объём: выберите</option>
@@ -301,7 +314,7 @@
                 </select>
             </div>
             <div class="comment-field">
-                <textarea rows="2" placeholder="Комментарий менеджера (заметки, сезонность, детали)" id="manager_notes"></textarea>
+                <textarea rows="2" placeholder="Общие заметки менеджера по клиенту (любые дополнительные детали, впечатления, потребности)" id="manager_notes"></textarea>
             </div>
         </div>
 
@@ -329,6 +342,12 @@
         const decisionWho = document.querySelector('input[name="decision_who"]:checked')?.value || '—';
         const decisionOther = document.getElementById('decision_other').value.trim() || '—';
 
+        const cdekExp = document.querySelector('input[name="cdek_exp"]:checked')?.value || '—';
+        const cdekExpDetail = document.getElementById('cdek_exp_detail').value.trim() || '—';
+
+        const currentCarrier = document.querySelector('input[name="current_carrier"]:checked')?.value || '—';
+        const carrierName = document.getElementById('carrier_name').value.trim() || '—';
+
         const charDocs = document.querySelector('input[name="char_docs"]:checked') ? 'документы' : '';
         const charGoods = document.querySelector('input[name="char_goods"]:checked') ? 'грузы/товары' : '';
         let character = [charDocs, charGoods].filter(Boolean).join(', ');
@@ -339,19 +358,17 @@
         const monthlyQty = document.querySelector('input[name="monthly_qty"]:checked')?.value || '—';
         const monthlyCustom = document.getElementById('monthly_qty_custom').value.trim() || '—';
 
-        // Новые поля: откуда и куда
         const geoFrom = document.getElementById('geo_from').value.trim() || '—';
         const geoTo = document.getElementById('geo_to').value.trim() || '—';
 
         const international = document.querySelector('input[name="international"]:checked')?.value || '—';
         const internationalCountries = document.getElementById('international_countries').value.trim() || '—';
 
-        const currentCarrier = document.querySelector('input[name="current_carrier"]:checked')?.value || '—';
-        const carrierName = document.getElementById('carrier_name').value.trim() || '—';
+        // Маркетплейсы
+        const marketplace = document.querySelector('input[name="marketplace"]:checked')?.value || '—';
+        const marketplaceNames = document.getElementById('marketplace_names').value.trim() || '—';
 
-        const cdekExp = document.querySelector('input[name="cdek_exp"]:checked')?.value || '—';
-        const cdekExpDetail = document.getElementById('cdek_exp_detail').value.trim() || '—';
-
+        // Потенциал и заметки
         const potentialVolume = document.getElementById('potential_volume').value;
         const priority = document.getElementById('priority').value;
         const managerNotes = document.getElementById('manager_notes').value.trim() || '—';
@@ -376,40 +393,45 @@
         if (decisionOther !== '—') report += `Другое лицо: ${decisionOther}\n`;
         report += '\n';
         
-        report += '3. ХАРАКТЕР ОТПРАВЛЕНИЙ И ТИП УПАКОВКИ\n';
+        report += '3. ОПЫТ РАБОТЫ СО СДЭК\n';
+        report += `Наличие опыта: ${cdekExp}\n`;
+        if (cdekExpDetail !== '—') report += `Детали (период, причины): ${cdekExpDetail}\n`;
+        report += '\n';
+        
+        report += '4. ТЕКУЩИЙ ПЕРЕВОЗЧИК (КОНКУРЕНТ)\n';
+        report += `Тип: ${currentCarrier}\n`;
+        if (carrierName !== '—') report += `Название / основной: ${carrierName}\n`;
+        report += '\n';
+        
+        report += '5. ХАРАКТЕР ОТПРАВЛЕНИЙ И ТИП УПАКОВКИ\n';
         report += `Характер: ${character}\n`;
         report += `Тип упаковки: ${packType}\n`;
         if (packOther !== '—') report += `Уточнение по упаковке: ${packOther}\n`;
         report += '\n';
         
-        report += '4. КОЛИЧЕСТВО ОТПРАВЛЕНИЙ В МЕСЯЦ\n';
+        report += '6. КОЛИЧЕСТВО ОТПРАВЛЕНИЙ В МЕСЯЦ\n';
         report += `Диапазон: ${monthlyQty}\n`;
         if (monthlyCustom !== '—') report += `Уточнение клиента: ${monthlyCustom}\n`;
         report += '\n';
         
-        report += '5. ГЕОГРАФИЯ ОТПРАВЛЕНИЙ\n';
+        report += '7. ГЕОГРАФИЯ ОТПРАВЛЕНИЙ\n';
         report += `Откуда отправляем: ${geoFrom}\n`;
         report += `Куда отправляем (топ-3): ${geoTo}\n\n`;
         
-        report += '6. МЕЖДУНАРОДНЫЕ ОТПРАВЛЕНИЯ\n';
+        report += '8. МЕЖДУНАРОДНЫЕ ОТПРАВЛЕНИЯ\n';
         report += `Наличие: ${international}\n`;
         if (internationalCountries !== '—') report += `Страны: ${internationalCountries}\n`;
         report += '\n';
         
-        report += '7. ТЕКУЩИЙ ПЕРЕВОЗЧИК (КОНКУРЕНТ)\n';
-        report += `Тип: ${currentCarrier}\n`;
-        if (carrierName !== '—') report += `Название / основной: ${carrierName}\n`;
+        report += '9. МАРКЕТПЛЕЙСЫ\n';
+        report += `Работа с маркетплейсами: ${marketplace}\n`;
+        if (marketplaceNames !== '—') report += `Какие: ${marketplaceNames}\n`;
         report += '\n';
         
-        report += '8. ОПЫТ РАБОТЫ СО СДЭК\n';
-        report += `Наличие опыта: ${cdekExp}\n`;
-        if (cdekExpDetail !== '—') report += `Детали (период, причины): ${cdekExpDetail}\n`;
-        report += '\n';
-        
-        report += '9. ПОТЕНЦИАЛ (ЗАПОЛНЕНО МЕНЕДЖЕРОМ)\n';
+        report += '10. ПОТЕНЦИАЛ И ОБЩИЕ ЗАМЕТКИ\n';
         report += `Ожидаемый объём: ${potentialVolume}\n`;
         report += `Приоритетность: ${priority}\n`;
-        report += `Комментарий менеджера: ${managerNotes}\n\n`;
+        report += `Общие заметки менеджера по клиенту: ${managerNotes}\n\n`;
         
         report += '================================================\n';
         report += 'Отчёт сформирован автоматически на основе чек-листа.\n';
